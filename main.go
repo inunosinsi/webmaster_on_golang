@@ -27,13 +27,13 @@ func main() {
 
 	analyticsService := webmasters.NewSearchanalyticsService(service)
 
-	now := time.Now()
-	yesterday := now.AddDate(0, 0, -1)
+	yesterday := time.Now().AddDate(0, 0, -1)
+	oneWeekBefore := yesterday.AddDate(0, 0, -7)
 	format := "2006-01-02"
 
 	req := &webmasters.SearchAnalyticsQueryRequest{
-		StartDate:  yesterday.Format(format),
-		EndDate:    now.Format(format),
+		StartDate:  oneWeekBefore.Format(format),
+		EndDate:    yesterday.Format(format),
 		Dimensions: []string{"query"},
 		RowLimit:   10,
 	}
